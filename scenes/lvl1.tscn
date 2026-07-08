@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://lo1tk1013uhg"]
+
+[ext_resource type="Texture2D" uid="uid://covjifd8xido4" path="res://assets/whitebg.png" id="1_0jtq1"]
+[ext_resource type="Script" uid="uid://boc75n41242d6" path="res://scripts/lvl1/main.gd" id="1_xmh5c"]
+[ext_resource type="Texture2D" uid="uid://cxvfgbuhsbkdc" path="res://assets/lv1/simpleBG.png" id="2_xmh5c"]
+[ext_resource type="Texture2D" uid="uid://ctwx42y3unljm" path="res://assets/lv1/zipper.png" id="3_g83ud"]
+[ext_resource type="FontFile" uid="uid://bt1b3o8j3u8g1" path="res://assets/fonts/RubikSprayPaint-Regular.woff2" id="5_g83ud"]
+[ext_resource type="PackedScene" uid="uid://ccroqfjixtisa" path="res://scenes/alarmclock.tscn" id="6_6j3wd"]
+
+[sub_resource type="FontFile" id="FontFile_2c0or"]
+cache/0/variation_coordinates = {}
+cache/0/face_index = 0
+cache/0/embolden = 0.0
+cache/0/transform = Transform2D(1, 0, 0, 1, 0, 0)
+cache/0/spacing_top = 0
+cache/0/spacing_bottom = 0
+cache/0/spacing_space = 0
+cache/0/spacing_glyph = 0
+cache/0/baseline_offset = 0.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/48/0/ascent = 0.0
+cache/0/48/0/descent = 0.0
+cache/0/48/0/underline_position = 0.0
+cache/0/48/0/underline_thickness = 0.0
+cache/0/48/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+
+[sub_resource type="Curve2D" id="Curve2D_6j3wd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 715, 325, 0, 0, 0, 0, 708, 326, 0, 0, 0, 0, 697, 332, 0, 0, 0, 0, 669, 340, 0, 0, 0, 0, 650, 343, 0, 0, 0, 0, 614, 352, 0, 0, 0, 0, 600, 357, 0, 0, 0, 0, 579, 361, 0, 0, 0, 0, 566, 363, 0, 0, 0, 0, 556, 367, 0, 0, 0, 0, 531, 374, 0, 0, 0, 0, 514, 382, 0, 0, 0, 0, 500, 385, 0, 0, 0, 0, 487, 389, 0, 0, 0, 0, 480, 389, 0, 0, 0, 0, 469, 388, 0, 0, 0, 0, 457, 386, 0, 0, 0, 0, 442, 383, 0, 0, 0, 0, 427, 380, 0, 0, 0, 0, 410, 379, 0, 0, 0, 0, 398, 373, 0, 0, 0, 0, 379, 369, 0, 0, 0, 0, 374, 366, 0, 0, 0, 0, 359, 361, 0, 0, 0, 0, 351, 357)
+}
+point_count = 25
+
+[node name="Node2D" type="Node2D" unique_id=1272162761 node_paths=PackedStringArray("PercentLabel")]
+script = ExtResource("1_xmh5c")
+PercentLabel = NodePath("Background/RichTextLabel")
+
+[node name="Background" type="TextureRect" parent="." unique_id=62261214]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0jtq1")
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Background" unique_id=803112177]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 92.0
+offset_right = 622.0
+offset_bottom = 149.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontFile_2c0or")
+theme_override_font_sizes/normal_font_size = 24
+text = "(spacebar)"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Background" unique_id=748777895]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 44.0
+offset_right = 844.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_g83ud")
+theme_override_font_sizes/normal_font_size = 48
+text = "Close the suitcase!"
+
+[node name="Case" type="TextureRect" parent="Background" unique_id=1807509469]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_xmh5c")
+
+[node name="Path2D" type="Path2D" parent="Background/Case" unique_id=1405189863]
+curve = SubResource("Curve2D_6j3wd")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Background/Case/Path2D" unique_id=237502115]
+position = Vector2(715, 325)
+rotation = 2.9996955
+
+[node name="Sprite2D" type="Sprite2D" parent="Background/Case/Path2D/PathFollow2D" unique_id=1187010685]
+rotation = 2.9329782
+texture = ExtResource("3_g83ud")
+
+[node name="Timer" type="Timer" parent="Background/Case" unique_id=1958016918]
+wait_time = 10.0
+autostart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background" unique_id=2163775]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 507.0
+offset_right = 724.0
+offset_bottom = 622.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("5_g83ud")
+theme_override_font_sizes/normal_font_size = 48
+text = "XX Percent"
+
+[node name="Node2D" parent="Background" unique_id=1822898398 instance=ExtResource("6_6j3wd")]
+position = Vector2(753, 452)
+time1 = "7"
+time2 = "15"
+
+[connection signal="timeout" from="Background/Case/Timer" to="." method="timerTimeOut"]

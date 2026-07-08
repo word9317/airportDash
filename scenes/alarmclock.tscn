@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ccroqfjixtisa"]
+
+[ext_resource type="Script" uid="uid://ejixmeutk5um" path="res://scripts/universal/alarmclock.gd" id="1_cesid"]
+[ext_resource type="Texture2D" uid="uid://crnnrxtkl83x" path="res://assets/universal/alarmclock.png" id="2_rwxir"]
+[ext_resource type="FontFile" uid="uid://0vydwu2s7eqq" path="res://assets/fonts/LCD.woff2" id="3_vrvhw"]
+
+[node name="Node2D" type="Node2D" unique_id=1822898398 node_paths=PackedStringArray("timeLabel")]
+script = ExtResource("1_cesid")
+timeLabel = NodePath("Alarmclock/RichTextLabel")
+
+[node name="Alarmclock" type="Sprite2D" parent="." unique_id=1097720168]
+position = Vector2(200, 100)
+texture = ExtResource("2_rwxir")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Alarmclock" unique_id=2009218121]
+offset_left = -171.0
+offset_top = -44.0
+offset_right = 171.0
+offset_bottom = 92.0
+theme_override_colors/default_color = Color(0.3346334, 0.43164793, 0.04191608, 1)
+theme_override_fonts/normal_font = ExtResource("3_vrvhw")
+theme_override_font_sizes/normal_font_size = 108
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Alarmclock" unique_id=1977970339]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Alarmclock/Timer" to="." method="timerChange"]
