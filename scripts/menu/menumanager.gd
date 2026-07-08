@@ -9,7 +9,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+# All of the button thingys
 func QuitPressed() -> void:
 	print("Hi")
 	get_tree().quit()

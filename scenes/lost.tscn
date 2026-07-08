@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://2dye0men84ul"]
+
+[ext_resource type="Script" uid="uid://2wfs5wjm6gny" path="res://scripts/universal/lose.gd" id="1_otx7i"]
+[ext_resource type="FontFile" uid="uid://bt1b3o8j3u8g1" path="res://assets/fonts/RubikSprayPaint-Regular.woff2" id="2_stqh1"]
+
+[node name="Node2D" type="Node2D" unique_id=1086756523]
+script = ExtResource("1_otx7i")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1579749061]
+offset_right = 1160.0
+offset_bottom = 656.0
+color = Color(1, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=2054115508]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -162.0
+offset_top = 170.0
+offset_right = 158.0
+offset_bottom = 272.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_stqh1")
+theme_override_font_sizes/normal_font_size = 56
+text = "You lost!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1195448935]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.5
+offset_top = -53.0
+offset_right = 186.5
+offset_bottom = 53.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="return" type="Button" parent="ColorRect/VBoxContainer" unique_id=531099518]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_stqh1")
+theme_override_font_sizes/font_size = 36
+text = "Return to the menu"
+
+[node name="Button2" type="Button" parent="ColorRect/VBoxContainer" unique_id=1314210776]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_stqh1")
+theme_override_font_sizes/font_size = 36
+text = "Quit"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/return" to="." method="returnToMain"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/Button2" to="." method="quitGame"]

@@ -1,8 +1,10 @@
 extends Node2D
 
+# incredible variables
 var progress: float = 0.0
 var outOfTime: bool = false
 
+# fetch some items in the scene
 @onready var pathFollower = $Background/Case/Path2D/PathFollow2D
 @onready var timer = $Background/Case/Timer
 @export var PercentLabel: RichTextLabel
@@ -18,7 +20,7 @@ func _process(delta: float) -> void:
 		# progress deterioration, use deltatime so framerate doesnt really affect
 		progress -= 15.0 * delta
 	
-	# hi(progress)
+		# hi(progress)
 		if Input.is_action_just_pressed("SpaceBar"):
 			progress += 4.0 # movement
 			print("hi")
@@ -41,4 +43,5 @@ func _process(delta: float) -> void:
 func timerTimeOut() -> void:
 	print("Out of time")
 	outOfTime = true
+	GameManager.lose_game()
 	pass # Replace with function body.

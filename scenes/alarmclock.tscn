@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://crnnrxtkl83x" path="res://assets/universal/alarmclock.png" id="2_rwxir"]
 [ext_resource type="FontFile" uid="uid://0vydwu2s7eqq" path="res://assets/fonts/LCD.woff2" id="3_vrvhw"]
 
-[node name="Node2D" type="Node2D" unique_id=1822898398 node_paths=PackedStringArray("timeLabel")]
+[node name="Node2D" type="Node2D" unique_id=1822898398 node_paths=PackedStringArray("timeLabel", "leavingTime")]
 script = ExtResource("1_cesid")
 timeLabel = NodePath("Alarmclock/RichTextLabel")
+leavingTime = NodePath("Alarmclock/RichTextLabel2")
 
 [node name="Alarmclock" type="Sprite2D" parent="." unique_id=1097720168]
 position = Vector2(200, 100)
@@ -27,5 +28,14 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="Alarmclock" unique_id=1977970339]
 wait_time = 0.5
 autostart = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Alarmclock" unique_id=538189069]
+offset_left = -169.0
+offset_top = -72.0
+offset_right = 174.0
+offset_bottom = -32.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Flight leaves in X hours and XX minutes"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Alarmclock/Timer" to="." method="timerChange"]
