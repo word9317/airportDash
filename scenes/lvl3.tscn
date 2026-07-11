@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bal0am1ewoou6"]
+
+[ext_resource type="PackedScene" uid="uid://dcxm5scr0kke4" path="res://scenes/lvl3GROUND.tscn" id="1_qfi8n"]
+[ext_resource type="PackedScene" uid="uid://bindvpcwcscxa" path="res://scenes/lvl3PLAYER.tscn" id="2_gunfr"]
+[ext_resource type="Script" uid="uid://d2phgucxbsahu" path="res://scripts/lvl3/spawner.gd" id="3_gunfr"]
+
+[node name="main" type="Node2D" unique_id=1323024922]
+
+[node name="CharacterBody2D" parent="." unique_id=1011022788 instance=ExtResource("1_qfi8n")]
+
+[node name="character" parent="." unique_id=1525934737 instance=ExtResource("2_gunfr")]
+process_mode = 0
+position = Vector2(216, 454)
+
+[node name="spawner" type="Node2D" parent="." unique_id=997977252]
+script = ExtResource("3_gunfr")
+
+[node name="Marker2D" type="Marker2D" parent="spawner" unique_id=111645677]
+position = Vector2(1123, 461)
+
+[node name="spawnTimer" type="Timer" parent="spawner" unique_id=740478376]

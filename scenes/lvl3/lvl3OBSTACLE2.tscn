@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b71brbp4ed6r1"]
+
+[ext_resource type="Script" uid="uid://dd6nymt4agg1e" path="res://scripts/lvl3/obstacle.gd" id="1_ng048"]
+[ext_resource type="Shader" uid="uid://c8aibg6tnktl1" path="res://assets/lvl3/whiteTransparent.gdshader" id="2_5yd81"]
+[ext_resource type="Texture2D" uid="uid://dhmjwocim1jff" path="res://assets/lvl3/obstacle2.png" id="3_ng048"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uxs8p"]
+shader = ExtResource("2_5yd81")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_muvcf"]
+radius = 19.5
+height = 107.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c0or"]
+size = Vector2(32, 53)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=748849611 groups=["person"]]
+script = ExtResource("1_ng048")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917463263]
+material = SubResource("ShaderMaterial_uxs8p")
+texture = ExtResource("3_ng048")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1491002152]
+position = Vector2(-3.5, 24.5)
+shape = SubResource("CapsuleShape2D_muvcf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=291321703]
+position = Vector2(-40, 49.5)
+shape = SubResource("RectangleShape2D_2c0or")

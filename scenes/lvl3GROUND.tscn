@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dcxm5scr0kke4"]
+
+[ext_resource type="Texture2D" uid="uid://bqy54sx87tn2l" path="res://assets/lvl3/runnerBackground.png" id="1_aqqa8"]
+[ext_resource type="Script" uid="uid://bncvoifospfq" path="res://scripts/lvl3/groundScript.gd" id="2_ppmi7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c0or"]
+size = Vector2(1193, 110)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1011022788]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=130194577]
+texture_repeat = 2
+texture = ExtResource("1_aqqa8")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1152, 648)
+script = ExtResource("2_ppmi7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1007992476]
+position = Vector2(559.5, 594)
+shape = SubResource("RectangleShape2D_2c0or")

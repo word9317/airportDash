@@ -1,25 +1,55 @@
 [gd_scene format=3 uid="uid://2dye0men84ul"]
 
 [ext_resource type="Script" uid="uid://2wfs5wjm6gny" path="res://scripts/universal/lose.gd" id="1_otx7i"]
+[ext_resource type="Texture2D" uid="uid://cdibjeqjd37j5" path="res://assets/lost/lose.png" id="2_m6hdc"]
 [ext_resource type="FontFile" uid="uid://bt1b3o8j3u8g1" path="res://assets/fonts/RubikSprayPaint-Regular.woff2" id="2_stqh1"]
+[ext_resource type="Shader" uid="uid://bmuo0sj1vtgf4" path="res://assets/lost/slightlywhite.gdshader" id="4_mwexj"]
+[ext_resource type="Script" uid="uid://d4nboq3bn73dn" path="res://scripts/universal/lostPlane.gd" id="4_wgqku"]
+[ext_resource type="Texture2D" uid="uid://c1g5aln5lfipj" path="res://assets/lost/lostplane.png" id="5_wgqku"]
+
+[sub_resource type="Curve2D" id="Curve2D_lujtq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 28, 591, 0, 0, 0, 0, 155, 593, 0, 0, 0, 0, 650, 515, 0, 0, 0, 0, 926, 404, 0, 0, 0, 0, 1186, 235, 0, 0, 0, 0, 1644, -40)
+}
+point_count = 6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2c0or"]
+shader = ExtResource("4_mwexj")
+shader_parameter/target_color = Color(1, 1, 1, 0.47843137)
+shader_parameter/tolerance = 0.050000002375
 
 [node name="Node2D" type="Node2D" unique_id=1086756523]
 script = ExtResource("1_otx7i")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1579749061]
-offset_right = 1160.0
-offset_bottom = 656.0
-color = Color(1, 0, 0, 1)
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1094793334]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_m6hdc")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect" unique_id=2054115508]
+[node name="Path2D" type="Path2D" parent="TextureRect" unique_id=231816005]
+curve = SubResource("Curve2D_lujtq")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="TextureRect/Path2D" unique_id=1356896633]
+position = Vector2(28, 591)
+rotation = 0.01574673
+loop = false
+script = ExtResource("4_wgqku")
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect/Path2D/PathFollow2D" unique_id=573835408]
+material = SubResource("ShaderMaterial_2c0or")
+rotation = 0.32572278
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_wgqku")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect" unique_id=2054115508]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -162.0
-offset_top = 170.0
-offset_right = 158.0
-offset_bottom = 272.0
+offset_left = -140.0
+offset_top = 86.0
+offset_right = 180.0
+offset_bottom = 188.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("2_stqh1")
 theme_override_font_sizes/normal_font_size = 56
@@ -27,31 +57,31 @@ text = "You lost!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1195448935]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1195448935]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -186.5
-offset_top = -53.0
-offset_right = 186.5
-offset_bottom = 53.0
+offset_left = -181.0
+offset_top = 54.0
+offset_right = 208.5
+offset_bottom = 176.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="return" type="Button" parent="ColorRect/VBoxContainer" unique_id=531099518]
+[node name="return" type="Button" parent="TextureRect/VBoxContainer" unique_id=531099518]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_stqh1")
 theme_override_font_sizes/font_size = 36
 text = "Return to the menu"
 
-[node name="Button2" type="Button" parent="ColorRect/VBoxContainer" unique_id=1314210776]
+[node name="Button2" type="Button" parent="TextureRect/VBoxContainer" unique_id=1314210776]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_stqh1")
 theme_override_font_sizes/font_size = 36
 text = "Quit"
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/return" to="." method="returnToMain"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/Button2" to="." method="quitGame"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/return" to="." method="returnToMain"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/Button2" to="." method="quitGame"]
