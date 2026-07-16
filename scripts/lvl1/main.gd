@@ -9,6 +9,8 @@ var outOfTime: bool = false
 @onready var timer = $Background/Case/Timer
 @export var PercentLabel: RichTextLabel
 
+var won: bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -36,12 +38,19 @@ func _process(delta: float) -> void:
 		# made it to the end yet?
 		if progress >= 100.0:
 			print("You won!")
+			timer.stop()
+			timer.wait_time = 2.0
+			timer.start()
+			won = true
 			set_process(false) #stops the process
 	
 
 
 func timerTimeOut() -> void:
-	print("Out of time")
-	outOfTime = true
-	GameManager.lose_game()
-	pass # Replace with function body.
+	if !won:
+		print("Out of time")
+		outOfTime = true
+		GameManager.lose_game()
+	else:
+		print("next")
+		get_tree().change_scene_to_file("res://scenes/lvl2.tscn")

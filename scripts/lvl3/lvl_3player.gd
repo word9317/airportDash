@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -600.0
 @onready var sprite = $AnimatedSprite2D
 @onready var collisionshape = $CollisionShape2D
 var dead = false
+var is_level_ending: bool = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -38,20 +39,39 @@ func _physics_process(delta: float) -> void:
 			
 	move_and_slide()
 
+	# Check collisions
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
-		if collision.get_collider().is_in_group("person"):
+		var collider = collision.get_collider()
+		
+		# Safety check: make sure the collider actually exists
+		if collider == null:
+			continue
+			
+		if collider.is_in_group("person"):
 			print("ded")
 			die()
-		if test_move(global_transform, Vector2.ZERO):
-			# Get the overlapping bodies to see if it's our buggy obstacle
-			# We look slightly to the right where the obstacle comes from
-			if test_move(global_transform, Vector2(1, 0)):
-				print("ded via push")
-				die()
+			return # Stop checking other collisions this frame
+			
+		if collider.is_in_group("end"):
+			print("lvlEnd")
+			is_level_ending = true # INSTANTLY flags that the level is over
+			get_tree().paused = true
+
+			await get_tree().create_timer(2.5).timeout
+			print("end")
+			return
+
+	# Only check for crushing/pushing if the level isn't already won
+	if test_move(global_transform, Vector2.ZERO):
+		if test_move(global_transform, Vector2(1, 0)):
+			print("ded via push")
+			die()
 
 func die():
 	if dead: return
 	dead = true
 	sprite.play("dead")
 	get_tree().paused = true
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://scenes/lost.tscn")

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://bal0am1ewoou6"]
+
+[ext_resource type="PackedScene" uid="uid://dcxm5scr0kke4" path="res://scenes/lvl3GROUND.tscn" id="1_qfi8n"]
+[ext_resource type="PackedScene" uid="uid://bindvpcwcscxa" path="res://scenes/lvl3PLAYER.tscn" id="2_gunfr"]
+[ext_resource type="Script" uid="uid://d2phgucxbsahu" path="res://scripts/lvl3/spawner.gd" id="3_gunfr"]
+[ext_resource type="FontFile" uid="uid://bt1b3o8j3u8g1" path="res://assets/fonts/RubikSprayPaint-Regular.woff2" id="4_jaojv"]
+[ext_resource type="PackedScene" uid="uid://ccroqfjixtisa" path="res://scenes/alarmclock.tscn" id="5_3n54i"]
+
+[node name="main" type="Node2D" unique_id=1323024922]
+
+[node name="CharacterBody2D" parent="." unique_id=1011022788 instance=ExtResource("1_qfi8n")]
+
+[node name="character" parent="." unique_id=1525934737 instance=ExtResource("2_gunfr")]
+process_mode = 0
+position = Vector2(216, 454)
+
+[node name="spawner" type="Node2D" parent="." unique_id=997977252]
+script = ExtResource("3_gunfr")
+
+[node name="Marker2D" type="Marker2D" parent="spawner" unique_id=111645677]
+position = Vector2(1123, 461)
+
+[node name="spawnTimer" type="Timer" parent="spawner" unique_id=740478376]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1736654492]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 373.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 113.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_jaojv")
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 36
+text = "Get to the security gate!"
+horizontal_alignment = 1
+
+[node name="GameTimer" type="Timer" parent="." unique_id=1697411826]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="Node2D" parent="." unique_id=1822898398 instance=ExtResource("5_3n54i")]
+position = Vector2(852, 503)
+scale = Vector2(0.75, 0.75)
+time1 = "10"
+time2 = "58"
+
+[node name="MiscTimer" type="Timer" parent="." unique_id=833775044]
+
+[connection signal="timeout" from="GameTimer" to="spawner" method="gameEnd"]

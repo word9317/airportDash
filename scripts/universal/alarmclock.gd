@@ -14,11 +14,27 @@ var leave2: int = 35
 var colonOn: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timeLabel.text = time1 + " " + time2
-	print(leave1-int(time1))
-	print(leave2-int(time2))
-	leavingTime.text = "Flight leaves in " + str(leave1) + " hours and " + str(leave2) + " minutes..."
-	pass # Replace with function body.
+	timeLabel.text = time1 + ":" + time2
+	
+	# 1. Convert current times from Strings to Integers
+	var current_hour: int = int(time1)
+	var current_min: int = int(time2)
+	
+	# 2. Calculate the raw difference
+	var diff_hours: int = leave1 - current_hour
+	var diff_mins: int = leave2 - current_min
+	
+	# 3. If minutes are negative, borrow 1 hour (60 minutes)
+	if diff_mins < 0:
+		diff_mins += 60
+		diff_hours -= 1
+		
+	# 4. (Optional Safety) If the calculated time is negative, the flight already left!
+	if diff_hours < 0:
+		leavingTime.text = "You missed your flight!"
+	else:
+		# 5. Display the clean, positive numbers
+		leavingTime.text = "Flight leaves in " + str(diff_hours) + " hours and " + str(diff_mins) + " minutes..."
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

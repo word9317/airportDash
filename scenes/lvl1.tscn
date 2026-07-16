@@ -104,7 +104,7 @@ text = "XX Percent"
 
 [node name="Node2D" parent="Background" unique_id=1822898398 instance=ExtResource("6_6j3wd")]
 position = Vector2(753, 452)
-time1 = "7"
+time1 = "10"
 time2 = "15"
 
 [connection signal="timeout" from="Background/Case/Timer" to="." method="timerTimeOut"]

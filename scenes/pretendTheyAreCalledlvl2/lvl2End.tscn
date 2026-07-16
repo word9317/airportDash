@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://sajjcu6wrtsu"]
+
+[ext_resource type="Script" uid="uid://dd6nymt4agg1e" path="res://scripts/lvl3/obstacle.gd" id="1_45luv"]
+[ext_resource type="Texture2D" uid="uid://df4g3t0p5xk5q" path="res://assets/lvl3/door.png" id="2_svor4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jee6"]
+size = Vector2(91, 142)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=748849611 groups=["end"]]
+script = ExtResource("1_45luv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1917463263 groups=["end"]]
+texture = ExtResource("2_svor4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=111759737 groups=["end"]]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_6jee6")
